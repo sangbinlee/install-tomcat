@@ -141,3 +141,25 @@ install-tomcat
 
 
 ![image](https://github.com/sangbinlee/install-tomcat/assets/4024414/cac035c1-f4b0-47b7-a750-3a114632d4e1)
+
+
+
+
+# docker 
+
+    
+    root@master:~# docker cp ~/setenv.sh tomcat-test:/usr/local/tomcat/bin/
+    Successfully copied 2.05kB to tomcat-test:/usr/local/tomcat/bin/
+    root@master:~# docker logs --tail -f tomcat-test
+
+
+
+
+# docker run -d --name="tomcat-test" -p 8080:8080 tomcat:8
+# docker ps
+# docker cp ~/setenv.sh tomcat-test:/usr/local/tomcat/bin/
+# docker cp ~/ROOT.war tomcat-test:/usr/local/tomcat/webapps/
+# docker exec -it tomcat-test /bin/bash
+# curl http://localhost:8080
+
+
