@@ -12,5 +12,6 @@ install-tomcat
 
 # docker-compose start web
 
+# docker-compose stop web
 
 
