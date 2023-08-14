@@ -333,3 +333,75 @@ install-tomcat
     root@master:~#
 
 
+# container and images
+    
+    
+    root@kpismain:~# docker ps -a
+    CONTAINER ID   IMAGE                                        COMMAND                  CREATED       STATUS                     PORTS                                       NAMES
+    1f4117171439   tomcat:85                                    "catalina.sh run"        2 hours ago   Up 2 hours                 0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    1ba38d36d33b   tomcat:8                                     "catalina.sh run"        7 hours ago   Exited (143) 2 hours ago                                               tomcat-test
+    e4a10e897a3c   gvenzl/oracle-xe                             "container-entrypoin…"   2 days ago    Up 2 days                  0.0.0.0:1521->1521/tcp, :::1521->1521/tcp   oracle21
+    d015057f7064   wvbirder/database-enterprise:12.2.0.1-slim   "/bin/sh -c '/bin/ba…"   3 days ago    Exited (1) 3 days ago                                                  local_db_2
+    2f0135b75d42   mcr.microsoft.com/mssql/server:2019-latest   "/opt/mssql/bin/perm…"   8 days ago    Exited (0) 2 days ago                                                  mssql
+    ab8515518d09   docker-httpd-tomcat-tomcat                   "catalina.sh run"        8 days ago    Exited (143) 8 days ago                                                docker-httpd-tomcat-tomcat-1
+    01dde4958e2e   docker-httpd-tomcat-httpd                    "apachectl -k start …"   8 days ago    Exited (137) 8 days ago                                                docker-httpd-tomcat-httpd-1
+    1560bdb645a3   spring-petclinic-docker-petclinic            "./mvnw spring-boot:…"   9 days ago    Exited (143) 8 days ago                                                spring-petclinic-docker-petclinic-1
+    2227f628a554   mysql:8                                      "docker-entrypoint.s…"   9 days ago    Exited (0) 8 days ago                                                  spring-petclinic-docker-mysqlserver-1
+    1f01568c1cc4   centos:7                                     "/bin/bash"              9 days ago    Exited (0) 9 days ago                                                  sharp_euler
+    4dca7a39b847   mysql:5.7.8                                  "/entrypoint.sh mysq…"   9 days ago    Exited (0) 9 days ago                                                  happy_moore
+    980043b72b50   postgres:15.3                                "docker-entrypoint.s…"   9 days ago    Exited (0) 9 days ago                                                  spring-petclinic-postgres-1
+    3a70363e9a4b   wvbirder/database-enterprise:12.2.0.1-slim   "/bin/sh -c '/bin/ba…"   9 days ago    Exited (137) 2 days ago                                                local_db
+    9f264267c1e4   hello-world                                  "/hello"                 9 days ago    Exited (0) 9 days ago                                                  crazy_wing
+    root@kpismain:~# docker compose ps
+    NAME                IMAGE               COMMAND             SERVICE             CREATED             STATUS              PORTS
+    tomcat-85           tomcat:85           "catalina.sh run"   tomcat-85           2 hours ago         Up 2 hours          0.0.0.0:8080->8080/tcp, :::8080->8080/tcp
+
+    
+    root@kpismain:~# docker images
+    REPOSITORY                          TAG             IMAGE ID       CREATED         SIZE
+    tomcat                              85              bc908d8656e4   3 hours ago     569MB
+    docker-httpd-tomcat-httpd           latest          a6e8d262383a   8 days ago      218MB
+    docker-httpd-tomcat-tomcat          latest          e6d0a7b8d40b   8 days ago      427MB
+    spring-petclinic-docker-petclinic   latest          6a066392b46f   9 days ago      510MB
+    mysql                               5.7             92034fe9a41f   11 days ago     581MB
+    mysql                               8               54150e9955c4   11 days ago     577MB
+    postgres                            15.3            8769343ac885   2 weeks ago     412MB
+    tomcat                              8               511ab3e2b780   2 weeks ago     426MB
+    gvenzl/oracle-xe                    latest          6e7a49043e84   5 weeks ago     2.87GB
+    mcr.microsoft.com/mssql/server      2019-latest     330e92fa0cc2   2 months ago    1.47GB
+    testcontainers/ryuk                 0.5.1           ec913eeff75a   2 months ago    12.7MB
+    hello-world                         latest          9c7a54a9a43c   3 months ago    13.3kB
+    centos                              7               eeb6ee3f44bd   23 months ago   204MB
+    wvbirder/database-enterprise        12.2.0.1-slim   27c9559d36ec   5 years ago     2.08GB
+    mysql                               5.7.8           adedf30d6136   7 years ago     358MB
+    root@kpismain:~#
+    
+    
+    root@kpismain:~# docker container ps
+    CONTAINER ID   IMAGE              COMMAND                  CREATED       STATUS       PORTS                                       NAMES
+    1f4117171439   tomcat:85          "catalina.sh run"        3 hours ago   Up 3 hours   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    e4a10e897a3c   gvenzl/oracle-xe   "container-entrypoin…"   2 days ago    Up 2 days    0.0.0.0:1521->1521/tcp, :::1521->1521/tcp   oracle21
+    root@kpismain:~#
+
+
+
+
+
+    
+    root@kpismain:~# docker container ps -a
+    CONTAINER ID   IMAGE                                        COMMAND                  CREATED       STATUS                     PORTS                                       NAMES
+    1f4117171439   tomcat:85                                    "catalina.sh run"        3 hours ago   Up 3 hours                 0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    1ba38d36d33b   tomcat:8                                     "catalina.sh run"        7 hours ago   Exited (143) 3 hours ago                                               tomcat-test
+    e4a10e897a3c   gvenzl/oracle-xe                             "container-entrypoin…"   2 days ago    Up 2 days                  0.0.0.0:1521->1521/tcp, :::1521->1521/tcp   oracle21
+    d015057f7064   wvbirder/database-enterprise:12.2.0.1-slim   "/bin/sh -c '/bin/ba…"   3 days ago    Exited (1) 3 days ago                                                  local_db_2
+    2f0135b75d42   mcr.microsoft.com/mssql/server:2019-latest   "/opt/mssql/bin/perm…"   8 days ago    Exited (0) 2 days ago                                                  mssql
+    ab8515518d09   docker-httpd-tomcat-tomcat                   "catalina.sh run"        8 days ago    Exited (143) 8 days ago                                                docker-httpd-tomcat-tomcat-1
+    01dde4958e2e   docker-httpd-tomcat-httpd                    "apachectl -k start …"   8 days ago    Exited (137) 8 days ago                                                docker-httpd-tomcat-httpd-1
+    1560bdb645a3   spring-petclinic-docker-petclinic            "./mvnw spring-boot:…"   9 days ago    Exited (143) 8 days ago                                                spring-petclinic-docker-petclinic-1
+    2227f628a554   mysql:8                                      "docker-entrypoint.s…"   9 days ago    Exited (0) 8 days ago                                                  spring-petclinic-docker-mysqlserver-1
+    1f01568c1cc4   centos:7                                     "/bin/bash"              9 days ago    Exited (0) 9 days ago                                                  sharp_euler
+    4dca7a39b847   mysql:5.7.8                                  "/entrypoint.sh mysq…"   9 days ago    Exited (0) 9 days ago                                                  happy_moore
+    980043b72b50   postgres:15.3                                "docker-entrypoint.s…"   9 days ago    Exited (0) 9 days ago                                                  spring-petclinic-postgres-1
+    3a70363e9a4b   wvbirder/database-enterprise:12.2.0.1-slim   "/bin/sh -c '/bin/ba…"   9 days ago    Exited (137) 2 days ago                                                local_db
+    9f264267c1e4   hello-world                                  "/hello"                 9 days ago    Exited (0) 9 days ago                                                  crazy_wing
+    root@kpismain:~#
