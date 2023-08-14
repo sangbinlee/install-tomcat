@@ -5,6 +5,29 @@ install-tomcat
 
 # file docker-compose.yml
 
+    
+    
+    version: '3.4'
+    
+    services:
+      tomcat:
+        container_name: "tomcat-test"
+        image: tomcat:8
+        environment: # 환경 변수 값
+          - system.mode=dev
+          - log.location=/usr/local/tomcat/logs/part-zone
+        volumes: # 볼륨 마운트
+          - /root/ROOT.war:/usr/local/tomcat/webapps/ROOT.war
+        ports:
+          - "8080:8080"
+    
+    
+
+
+
+
+
+
 # docker-compose up -d
 # docker-compose down
 
