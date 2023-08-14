@@ -64,6 +64,9 @@ install-tomcat
     root@kpismain:~# docker cp ~/setenv.sh tomcat-test:/usr/local/tomcat/bin/
     Successfully copied 2.05kB to tomcat-test:/usr/local/tomcat/bin/
 
+
+
+# chmod +x setenv.sh
 # chmod 755 setenv.sh
     
     root@kpismain:~# chmod 755 setenv.sh
