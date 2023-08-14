@@ -134,3 +134,7 @@ install-tomcat
     root@007acf94922d:/usr/local/tomcat/bin#
 
 
+# echo $SHELL
+
+
+![image](https://github.com/sangbinlee/install-tomcat/assets/4024414/cac035c1-f4b0-47b7-a750-3a114632d4e1)
