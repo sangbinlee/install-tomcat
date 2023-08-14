@@ -161,5 +161,5 @@ install-tomcat
 # docker cp ~/ROOT.war tomcat-test:/usr/local/tomcat/webapps/
 # docker exec -it tomcat-test /bin/bash
 # curl http://localhost:8080
-
+# docker logs --tail -f tomcat-test
 
