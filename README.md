@@ -163,3 +163,79 @@ install-tomcat
 # curl http://localhost:8080
 # docker logs --tail -f tomcat-test
 
+
+
+# ------------------------------------------
+# docker 실패 해서 docker compose 로 성공
+# docker compose 작업 process
+   79  vi Dockerfile
+   80  docker build -t tomcat:85 .
+   81  docker search tomcat
+   82  vi Dockerfile
+   83  docker build -t tomcat:85 .
+   84  docker images
+   85  vi docker-compose.yml
+   86  docker compose up -d
+
+# vi Dockerfile
+       
+    root@master:~# vi Dockerfile
+    
+        FROM tomcat:8-jdk8-openjdk
+        
+        RUN apt-get update
+        RUN apt-get install -y tzdata
+        ENV TZ=Asia/Seoul
+        ENV system.mode=dev
+        ENV log.location=/usr/local/tomcat/logs/part-zone
+            
+        CMD ["catalina.sh", "run"]
+
+# docker build
+    docker build -t tomcat:85 .
+
+# docker images
+       
+    root@master:~# docker images
+    REPOSITORY                     TAG             IMAGE ID       CREATED         SIZE
+    tomcat                         85              ce094b6d81ea   8 minutes ago   569MB
+    
+
+
+
+
+
+# vi docker-compose.yml
+    root@master:~# vi docker-compose.yml
+ 
+    version: '3.1'
+    services:
+      tomcat85:
+        image: tomcat:85
+        container_name: "tomcat-85"
+        environment:
+          - system.mode=dev
+          - log.location=/usr/local/tomcat/logs/part-zone
+        volumes:
+          - /root/ROOT.war:/usr/local/tomcat/webapps/ROOT.war
+        ports:
+          - "8080:8080"
+
+# docker compose up -d
+    docker compose down
+
+    
+# docker compose logs -f
+
+# docker compose ps
+    root@master:~# docker compose ps
+    NAME                IMAGE               COMMAND             SERVICE             CREATED             STATUS              PORTS
+    tomcat-85           tomcat:85           "catalina.sh run"   tomcat85            7 minutes ago       Up 7 minutes        0.0.0.0:8080->8080/tcp, :::8080->8080/tcp
+
+
+# docker ps
+    
+    root@master:~# docker ps
+    CONTAINER ID   IMAGE       COMMAND             CREATED         STATUS         PORTS                                       NAMES
+    85ccefaf19d2   tomcat:85   "catalina.sh run"   7 minutes ago   Up 7 minutes   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    root@master:~#
