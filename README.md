@@ -15,3 +15,6 @@ install-tomcat
 # docker-compose stop web
 
 
+
+# docker-compose ps
+
