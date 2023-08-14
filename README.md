@@ -17,4 +17,11 @@ install-tomcat
 
 
 # docker-compose ps
+# docker-compose logs -f web
+
+
+
+
+
+
 
