@@ -292,3 +292,44 @@ install-tomcat
     OpenJDK Runtime Environment (build 1.8.0_342-b07)
     OpenJDK 64-Bit Server VM (build 25.342-b07, mixed mode)
     root@1f4117171439:/usr/local/tomcat#
+
+
+# 시스템 재시작시 컨테이너 자동 재시작 세팅
+    
+    root@master:/etc/systemd/system# docker container ps
+    CONTAINER ID   IMAGE       COMMAND             CREATED       STATUS       PORTS                                       NAMES
+    85ccefaf19d2   tomcat:85   "catalina.sh run"   3 hours ago   Up 3 hours   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    root@master:/etc/systemd/system# docker ps
+    CONTAINER ID   IMAGE       COMMAND             CREATED       STATUS       PORTS                                       NAMES
+    85ccefaf19d2   tomcat:85   "catalina.sh run"   3 hours ago   Up 3 hours   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    root@master:/etc/systemd/system# docker update --restart=always tomcat-85
+    tomcat-85
+    root@master:/etc/systemd/system#
+
+
+
+
+# reboot     
+    root@master:/etc/systemd/system# reboot now
+    
+    Remote side unexpectedly closed network connection
+    
+    ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    
+    Session stopped
+        - Press <Return> to exit tab
+        - Press R to restart session
+        - Press S to save terminal output to file
+
+# 컨테이너 자동재시작 확인하기
+
+    
+    sangbinlee9@master:~$ sudo su
+    [sudo] password for sangbinlee9:
+    root@master:/home/sangbinlee9# cd ~
+    root@master:~# docker ps
+    CONTAINER ID   IMAGE       COMMAND             CREATED       STATUS          PORTS                                       NAMES
+    85ccefaf19d2   tomcat:85   "catalina.sh run"   3 hours ago   Up 29 seconds   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    root@master:~#
+
+
