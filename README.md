@@ -10,3 +10,7 @@ install-tomcat
 
 
 
+# docker-compose start web
+
+
+
