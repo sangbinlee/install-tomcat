@@ -405,3 +405,67 @@ install-tomcat
     3a70363e9a4b   wvbirder/database-enterprise:12.2.0.1-slim   "/bin/sh -c '/bin/ba…"   9 days ago    Exited (137) 2 days ago                                                local_db
     9f264267c1e4   hello-world                                  "/hello"                 9 days ago    Exited (0) 9 days ago                                                  crazy_wing
     root@kpismain:~#
+
+
+# 서버 재시작시 자동 컨테이너 시작 세팅
+    
+    root@kpismain:~# docker update --restart=always oracle21
+    oracle21
+    root@kpismain:~# docker update --restart=always tomcat-85
+    tomcat-85
+    root@kpismain:~#
+
+# 서버 재시작
+    root@kpismain:~# reboot now
+    root@kpismain:~#
+    Remote side unexpectedly closed network connection
+    
+    ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    
+    Session stopped
+        - Press <Return> to exit tab
+        - Press R to restart session
+        - Press S to save terminal output to file
+
+# 서버 재시작 후 컨테이너 재시작 확인
+
+    
+    master@kpismain:~$ sudo su
+    [sudo] password for master:
+    root@kpismain:/home/master# cd ~
+    
+    root@kpismain:~# docker ps
+    CONTAINER ID   IMAGE              COMMAND                  CREATED       STATUS         PORTS                                       NAMES
+    1f4117171439   tomcat:85          "catalina.sh run"        3 hours ago   Up 9 seconds   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    e4a10e897a3c   gvenzl/oracle-xe   "container-entrypoin…"   2 days ago    Up 9 seconds   0.0.0.0:1521->1521/tcp, :::1521->1521/tcp   oracle21
+    
+    root@kpismain:~# docker compose ps
+    NAME                IMAGE               COMMAND             SERVICE             CREATED             STATUS              PORTS
+    tomcat-85           tomcat:85           "catalina.sh run"   tomcat-85           3 hours ago         Up 27 seconds       0.0.0.0:8080->8080/tcp, :::8080->8080/tcp
+    
+    root@kpismain:~# docker compose ps -a
+    NAME                IMAGE               COMMAND             SERVICE             CREATED             STATUS                     PORTS
+    tomcat-85           tomcat:85           "catalina.sh run"   tomcat-85           3 hours ago         Up 35 seconds              0.0.0.0:8080->8080/tcp, :::8080->8080/tcp
+    tomcat-test         tomcat:8            "catalina.sh run"   tomcat              7 hours ago         Exited (143) 3 hours ago
+    
+    root@kpismain:~# docker ps -a
+    CONTAINER ID   IMAGE                                        COMMAND                  CREATED       STATUS                     PORTS                                       NAMES
+    1f4117171439   tomcat:85                                    "catalina.sh run"        3 hours ago   Up About a minute          0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   tomcat-85
+    1ba38d36d33b   tomcat:8                                     "catalina.sh run"        7 hours ago   Exited (143) 3 hours ago                                               tomcat-test
+    e4a10e897a3c   gvenzl/oracle-xe                             "container-entrypoin…"   2 days ago    Up About a minute          0.0.0.0:1521->1521/tcp, :::1521->1521/tcp   oracle21
+    d015057f7064   wvbirder/database-enterprise:12.2.0.1-slim   "/bin/sh -c '/bin/ba…"   3 days ago    Exited (1) 3 days ago                                                  local_db_2
+    2f0135b75d42   mcr.microsoft.com/mssql/server:2019-latest   "/opt/mssql/bin/perm…"   8 days ago    Exited (0) 2 days ago                                                  mssql
+    ab8515518d09   docker-httpd-tomcat-tomcat                   "catalina.sh run"        8 days ago    Exited (143) 8 days ago                                                docker-httpd-tomcat-tomcat-1
+    01dde4958e2e   docker-httpd-tomcat-httpd                    "apachectl -k start …"   8 days ago    Exited (137) 8 days ago                                                docker-httpd-tomcat-httpd-1
+    1560bdb645a3   spring-petclinic-docker-petclinic            "./mvnw spring-boot:…"   9 days ago    Exited (143) 8 days ago                                                spring-petclinic-docker-petclinic-1
+    2227f628a554   mysql:8                                      "docker-entrypoint.s…"   9 days ago    Exited (0) 8 days ago                                                  spring-petclinic-docker-mysqlserver-1
+    1f01568c1cc4   centos:7                                     "/bin/bash"              9 days ago    Exited (0) 9 days ago                                                  sharp_euler
+    4dca7a39b847   mysql:5.7.8                                  "/entrypoint.sh mysq…"   9 days ago    Exited (0) 9 days ago                                                  happy_moore
+    980043b72b50   postgres:15.3                                "docker-entrypoint.s…"   9 days ago    Exited (0) 9 days ago                                                  spring-petclinic-postgres-1
+    3a70363e9a4b   wvbirder/database-enterprise:12.2.0.1-slim   "/bin/sh -c '/bin/ba…"   9 days ago    Exited (137) 2 days ago                                                local_db
+    9f264267c1e4   hello-world                                  "/hello"                 9 days ago    Exited (0) 9 days ago                                                  crazy_wing
+    root@kpismain:~#
+
+
+
+    
